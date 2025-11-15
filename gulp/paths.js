@@ -1,6 +1,6 @@
 'use strict';
 
-const src = 'src', dest = 'dist';
+const src = 'src', dest = 'docs';
 
 export default {
   src,
