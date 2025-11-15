@@ -1,0 +1,26 @@
+mixin page(title)
+  +b.HTML.page(lang='ru')&attributes(attributes)
+    head
+      title #{title} - #{pkg.description}
+      // Meta
+      meta(charset='utf-8')
+      meta(name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no')
+      meta(name='description' content='')
+      meta(name='keywords' content='')
+      meta(name='author' content='')
+      // Favicon
+      include ../lib/favicon
+      // CSS
+      each cssFile in cssFiles
+        link(rel='stylesheet' href=cssFile)
+
+      // script
+        include ../../vendors/svg-symbols/svg-symbols.js
+    +e.BODY.__body
+      +e.MAIN.__body-inner
+        block
+      // JS
+      script(src='https://code.jquery.com/jquery-3.6.0.min.js')
+      script(src='https://cdn.jsdelivr.net/npm/chart.js')
+      each jsFile in jsFiles
+        script(src=jsFile) 

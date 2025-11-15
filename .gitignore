@@ -1,0 +1,8 @@
+node_modules/
+/node_modules/*
+dist/
+app/css/
+/**/*.psd
+/**/Thumbs.db
+.idea
+.vscode

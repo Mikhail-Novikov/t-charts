@@ -1,0 +1,11 @@
+include lib/variables
+include lib/mixins
+include blocks/page
+
++page(pagesList.pagesList.title)
+  .container
+    h1 Список страниц
+    ul
+      each page, key in pagesList
+        li
+          a(href=page.url)= page.title

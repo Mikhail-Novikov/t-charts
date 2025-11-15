@@ -1,0 +1,221 @@
+:root {
+  --color-white: #ffffff;
+  --color-gray: #666666;
+  --bg-soft: #efefef;
+  --bg-blue: #e0f2f7;
+  --bg-green: #e6ffe6;
+  --bg-red: #ffe6e6;
+  --bg-hover: #f9f9f9;
+  --color-green: #008000;
+  --color-red: #cc0000;
+}
+
+// Базовые стили
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--color-white);
+  color: var(--color-gray);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+// Таблица метрик
+.dashboard-table {
+  background-color: var(--color-white);
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+// График
+.dashboard-chart {
+  
+  #chartCanvas {
+    border-radius: 8px;
+    max-width: 100%;
+    height: 600px;
+  }
+}
+
+.metrics-table {
+  width: 100%;
+  background-color: var(--color-white);
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
+
+  &.metrics-table--nested tr.metrics-table__data-row--child {
+    td.metrics-table__cell {
+      border-left-width: 0;
+      border-right-width: 0;
+    }
+
+    td:not(:first-child), 
+    td:not(:first-child) {
+      border-left-width: 6px;
+    }
+
+    td:first-child {
+      padding-left: 1.6rem;
+    }
+
+    td:last-child {
+      text-align: center;
+    }
+  }
+  
+  thead {
+    tr {
+      th {
+        padding: 16px;
+        font-weight: 500;
+        text-align: center;
+        border: 6px solid var(--color-white);
+        background-color: var(--bg-soft);
+        
+        &.metrics-table__header--blue {
+          background-color: var(--bg-blue);
+          text-align: center;
+        }
+      }
+    }
+  }
+  
+  tbody {
+    tr {
+      border-color: transparent;
+
+      td {
+        padding: 16px;
+        border: 6px solid var(--color-white);
+        text-align: left;
+        background-color: var(--bg-soft);
+        color: var(--color-gray);
+
+        &:first-child {
+          font-weight: 500;
+        }
+        
+        // Модификаторы цветов фона
+        &.metrics-table__cell--default {
+          text-align: center;
+          
+          .metrics-table__value {
+            color: var(--color-gray);
+            margin-right: 8px;
+          }
+        }
+        
+        &.metrics-table__cell--blue {
+          background-color: var(--bg-blue);
+          text-align: center;
+        }
+        
+        &.metrics-table__cell--green {
+          background-color: var(--bg-green);
+          text-align: center;
+          
+          .metrics-table__value {
+            color: var(--color-gray);
+            margin-right: 8px;
+          }
+          
+          .metrics-table__percent {
+            color: var(--color-green);
+            font-weight: 500;
+          }
+        }
+        
+        &.metrics-table__cell--red {
+          background-color: var(--bg-red);
+          text-align: center;
+          
+          .metrics-table__value {
+            color: var(--color-gray);
+            margin-right: 8px;
+          }
+          
+          .metrics-table__percent--red {
+            color: var(--color-red);
+            font-weight: 500;
+          }
+        }
+        
+        &.metrics-table__percent--default {
+          color: var(--color-gray);
+          font-weight: 500;
+        }
+        
+        &.metrics-table__percent--green {
+          color: var(--color-green);
+          font-weight: 500;
+        }
+        
+        &.metrics-table__percent--red {
+          color: var(--color-red);
+          font-weight: 500;
+        }
+      }
+      
+      // Строка с данными - кликабельна
+      &.metrics-table__data-row {
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+        
+        &:hover {
+          background-color: var(--bg-hover);
+          
+          td {
+            background-color: inherit;
+          }
+        }
+      }
+      
+      // Строка с графиком
+      &.metrics-table__chart-row {
+         > td {
+          padding: 0;
+        }
+      }
+    }
+  }
+}
+
+// Стили для графика внутри таблицы
+.dashboard-chart {
+  background-color: var(--color-white);
+  
+  .metrics-table__canvas {
+    display: block;
+    height: 600px;
+    max-width: 100%;
+    padding: 5rem;
+  }
+}
+
+// Адаптивность
+@media (max-width: 768px) {
+  .dashboard-table {
+    padding: 10px;
+  }
+  
+  .metrics-table {
+    font-size: 12px;
+    
+    thead tr th,
+    tbody tr td {
+      padding: 12px 8px;
+    }
+  }
+}

@@ -1,0 +1,70 @@
+[class*='icon-svg-'] {
+  fill: currentColor;
+}
+
+[class*='icon-svg-'] use {
+  pointer-events: none;
+}
+
+.icon-svg-call-answer {
+  width: 1em;
+  height: 1em;
+}
+
+#icon-svg-call-answer {
+  
+}
+
+.icon-svg-facebook-logo {
+  width: 1em;
+  height: 1em;
+}
+
+#icon-svg-facebook-logo {
+  
+}
+
+.icon-svg-insta {
+  width: 1em;
+  height: 1em;
+}
+
+#icon-svg-insta {
+  
+}
+
+.icon-svg-instagram-logo {
+  width: 1em;
+  height: 1em;
+}
+
+#icon-svg-instagram-logo {
+  
+}
+
+.icon-svg-instagram {
+  width: 1em;
+  height: 1em;
+}
+
+#icon-svg-instagram {
+  
+}
+
+.icon-svg-more {
+  width: 1.375em;
+  height: 1em;
+}
+
+#icon-svg-more {
+  
+}
+
+.icon-svg-vk {
+  width: 1em;
+  height: 1em;
+}
+
+#icon-svg-vk {
+  
+}

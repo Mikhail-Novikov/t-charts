@@ -1,0 +1,99 @@
+{
+  "name": "app-charts",
+  "version": "1.0.0",
+  "description": "Таблица с графиком",
+  "main": "index.js",
+  "repository": "",
+  "author": "<profiservic2@yandex.ru>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "gulp",
+    "prod": "gulp prod"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "bemto.pug": "^2.1.0",
+    "browser-sync": "^2.26.4",
+    "del": "^3.0.0",
+    "emitty": "^1.4.0",
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^5.0.0",
+    "gulp-clean-css": "^3.10.0",
+    "gulp-cssimport": "^6.0.1",
+    "gulp-debug": "^4.0.0",
+    "gulp-filter": "^5.1.0",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-newer": "^1.4.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-prettify": "^0.5.0",
+    "gulp-pug": "^4.0.1",
+    "gulp-pxtorem": "^3.0.0",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2",
+    "gulp-sass-glob": "^1.0.9",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-svg-symbols": "^3.2.3",
+    "gulp-svgmin": "^1.2.4",
+    "gulp-typograf": "^3.1.0",
+    "gulp-uglify": "^3.0.2",
+    "imagemin-jpeg-recompress": "^5.1.0",
+    "natives": "^1.1.6",
+    "remove-svg-properties": "^0.3.3",
+    "sass-inline-svg-utf8": "^1.0.5",
+    "stream-combiner2": "^1.1.1",
+    "uglifyjs-webpack-plugin": "^2.1.2",
+    "vinyl-named": "^1.1.0",
+    "webpack": "^4.1.1",
+    "webpack-stream": "^4.0.0"
+  },
+  "dependencies": {
+    "@fancyapps/fancybox": "^3.3.5",
+    "babel-polyfill": "^6.26.0",
+    "bootstrap": ">=4.3.1",
+    "css-vars-ponyfill": "^1.8.0",
+    "element-closest": "^2.0.2",
+    "focus-visible": "^4.1.4",
+    "gulp-wait": "0.0.2",
+    "hoek": "^5.0.3",
+    "imagesloaded": "^4.1.4",
+    "jquery": "^3.4.0",
+    "jquery-validation": "^1.17.0",
+    "masonry-layout": "^4.2.1",
+    "nodelist-foreach-polyfill": "^1.2.0",
+    "normalize.css": "^8.0.0",
+    "popper.js": "^1.14.3",
+    "slick-carousel": "^1.8.1",
+    "swiper": "^4.3.3",
+    "yarn": "^1.15.2"
+  },
+  "browserslist": [
+    "> 0.5%",
+    "last 2 versions",
+    "Firefox ESR",
+    "not dead",
+    "IE >= 10"
+  ],
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "browsers": [
+              "> 0.5%",
+              "last 2 versions",
+              "Firefox ESR",
+              "not dead",
+              "IE >= 10"
+            ]
+          },
+          "useBuiltIns": true
+        }
+      ]
+    ]
+  }
+}

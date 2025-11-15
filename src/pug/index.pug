@@ -1,0 +1,79 @@
+include lib/variables
+include lib/mixins
+include blocks/page
+
++page(pagesList.index.title)
+  .container
+    .dashboard-table
+      table.metrics-table
+        thead
+          tr
+            th.metrics-table__header Показатель
+            th.metrics-table__header.metrics-table__header--blue Текущий день
+            th.metrics-table__header Вчера
+            th.metrics-table__header Этот день недели
+        tbody
+          each row in tableData
+            - // parse numeric values for comparisons
+            - const currentDayNum = parseInt(row.currentDay.toString().replace(/\s/g, '')) || 0
+            - const yesterdayNum = parseInt(row.yesterday.toString().replace(/\s/g, '')) || 0
+            - const todayNum = parseInt(row.today.toString().replace(/\s/g, '')) || 0
+            - const isCurrentDayGreater = currentDayNum > yesterdayNum
+            - const isZeroPercent = row.percent === '0%'
+            - const isAnyEqualToday = currentDayNum === todayNum
+            - const isTodayGreaterThanCurrent = todayNum > currentDayNum
+            - const isTodayLessThanCurrent = todayNum < currentDayNum
+            tr.metrics-table__data-row(data-row-id=row.id data-current-day=row.currentDay data-yesterday=row.yesterday data-today=row.today data-label=row.label)
+              td.metrics-table__cell #{row.label}
+              td.metrics-table__cell.metrics-table__cell--blue(data-value=row.currentDay) #{row.currentDay}
+              td.metrics-table__cell(class={
+                'metrics-table__cell--default': isZeroPercent,
+                'metrics-table__cell--green': isCurrentDayGreater && !isZeroPercent,
+                'metrics-table__cell--red': !isCurrentDayGreater && !isZeroPercent
+              })
+                span.metrics-table__value(data-value=row.yesterday) #{row.yesterday}
+                span.metrics-table__percent(class={
+                  'metrics-table__percent--default': isZeroPercent,
+                  'metrics-table__percent--green': isCurrentDayGreater && !isZeroPercent,
+                  'metrics-table__percent--red': !isCurrentDayGreater && !isZeroPercent
+                }) #{row.percent}
+              td.metrics-table__cell(class={
+                'metrics-table__cell--default': isAnyEqualToday,
+                'metrics-table__cell--red': isTodayGreaterThanCurrent && !isAnyEqualToday,
+                'metrics-table__cell--green': isTodayLessThanCurrent && !isAnyEqualToday
+              } data-value=row.today) #{row.today}
+            tr.metrics-table__chart-row(data-row-id=row.id style='display: none;')
+              td(colspan="4")
+                .dashboard-chart
+                  canvas.metrics-table__canvas(style='max-width: 100%; max-height: 600px;')
+
+                  if row.children && row.children.length
+                    .nested-children
+                      table.metrics-table.metrics-table--nested
+                        colgroup
+                          col(style='width: 460px;')
+                          col(style='width: 208px;')
+                          col(style='width: 198px;')
+                          col()
+                        tbody
+                          each child in row.children
+                            - const cCurrent = parseInt(child.currentDay.toString().replace(/\s/g, '')) || 0
+                            - const cYesterday = parseInt(child.yesterday.toString().replace(/\s/g, '')) || 0
+                            - const cToday = parseInt(child.today.toString().replace(/\s/g, '')) || 0
+                            - const cIsCurrentGreater = cCurrent > cYesterday
+                            - const cIsZeroPercent = child.percent === '0%'
+                            tr.metrics-table__data-row--child
+                              td.metrics-table__cell #{child.label}
+                              td.metrics-table__cell.metrics-table__cell--blue(data-value=child.currentDay) #{child.currentDay}
+                              td.metrics-table__cell(class={
+                                'metrics-table__cell--default': cIsZeroPercent,
+                                'metrics-table__cell--green': cIsCurrentGreater && !cIsZeroPercent,
+                                'metrics-table__cell--red': !cIsCurrentGreater && !cIsZeroPercent
+                              })
+                                span.metrics-table__value(data-value=child.yesterday) #{child.yesterday}
+                                span.metrics-table__percent(class={
+                                  'metrics-table__percent--default': cIsZeroPercent,
+                                  'metrics-table__percent--green': cIsCurrentGreater && !cIsZeroPercent,
+                                  'metrics-table__percent--red': !cIsCurrentGreater && !cIsZeroPercent
+                                }) #{child.percent}
+                              td.metrics-table__cell(data-value=child.today) #{child.today}

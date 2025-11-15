@@ -1,0 +1,103 @@
+-
+  var pagesList = {
+    index: {title: 'Главная', url: 'index.html'},
+    pagesList: {title: 'Список страниц', url: 'pages-list.html'},
+  };
+
+  // Метод для вычисления процентного изменения
+  function calculatePercent(current, previous) {
+    var curr = parseInt(current.toString().replace(/\s/g, ''));
+    var prev = parseInt(previous.toString().replace(/\s/g, ''));
+
+    if (prev === 0) return '0%';
+
+    var change = ((curr - prev) / prev * 100).toFixed(0);
+    return (change > 0 ? '+' : '') + change + '%';
+  }
+
+  var tableData = [
+    {
+      id: 'row-cash',
+      label: 'Выручка, руб',
+      currentDay: '500521',
+      yesterday: '480521',
+      today: '4805121',
+      children: [
+        {
+          id: 'row-cash-cash',
+          label: 'Наличные',
+          currentDay: '300000',
+          yesterday: '300000',
+          today: '300000'
+        },
+        {
+          id: 'row-cash-cashless',
+          label: 'Безналичный расчет',
+          currentDay: '100000',
+          yesterday: '100000',
+          today: '100000'
+        },
+        {
+          id: 'row-cash-credit',
+          label: 'Кредитные карты',
+          currentDay: '100521',
+          yesterday: '100521',
+          today: '100521'
+        }
+      ]
+    },
+    {
+      id: 'row-cash-average-check',
+      label: 'Средний чек, руб',
+      currentDay: '1300',
+      yesterday: '900',
+      today: '900'
+    },
+    {
+      id: 'row-cash-average-guest',
+      label: 'Средний гость, руб',
+      currentDay: '1200',
+      yesterday: '800',
+      today: '800'
+    },
+    {
+      id: 'row-cash-deleted-after',
+      label: 'Удаления из чека (после оплаты), руб',
+      currentDay: '1000',
+      yesterday: '1100',
+      today: '900'
+    },
+    {
+      id: 'row-cash-deleted-before',
+      label: 'Удаления из чека (до оплаты), руб',
+      currentDay: '1300',
+      yesterday: '1300',
+      today: '900'
+    },
+    {
+      id: 'row-cash-checks',
+      label: 'Количество чеков',
+      currentDay: '34',
+      yesterday: '36',
+      today: '34'
+    },
+    {
+      id: 'row-cash-guests',
+      label: 'Количество гостей',
+      currentDay: '34',
+      yesterday: '36',
+      today: '32'
+    }
+  ];
+  
+  // Рекурсивное вычисление процентного изменения для каждой строки (включая вложенные children)
+  function computePercents(rows) {
+    rows.forEach(function(row) {
+      row.percent = calculatePercent(row.currentDay, row.yesterday);
+      if (row.children && row.children.length) {
+        computePercents(row.children);
+      }
+    });
+  }
+
+  computePercents(tableData);
