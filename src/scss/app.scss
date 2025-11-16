@@ -103,6 +103,18 @@ body {
         background-color: var(--bg-soft);
         color: var(--color-gray);
 
+        div.metrics-table__wrapper--flex {
+          display: flex;
+          text-align: right;
+
+          :first-child {
+            flex: 1 1 60%;
+          }
+          :last-child {
+            flex: 1 1 40%;
+          }
+        }
+
         &:first-child {
           font-weight: 500;
         }
@@ -171,6 +183,7 @@ body {
       // Строка с данными - кликабельна
       &.metrics-table__data-row {
         cursor: pointer;
+
         transition: background-color 0.2s ease;
         
         &:hover {

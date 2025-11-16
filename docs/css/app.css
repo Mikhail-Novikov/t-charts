@@ -93,6 +93,22 @@ body {
   color: var(--color-gray);
 }
 
+.metrics-table tbody tr td div.metrics-table__wrapper--flex {
+  display: -ms-flexbox;
+  display: flex;
+  text-align: right;
+}
+
+.metrics-table tbody tr td div.metrics-table__wrapper--flex :first-child {
+  -ms-flex: 1 1 60%;
+  flex: 1 1 60%;
+}
+
+.metrics-table tbody tr td div.metrics-table__wrapper--flex :last-child {
+  -ms-flex: 1 1 40%;
+  flex: 1 1 40%;
+}
+
 .metrics-table tbody tr td:first-child {
   font-weight: 500;
 }
